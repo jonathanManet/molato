@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html>
+    <% include partials/headback.ejs %>
+<body>
+    <% include partials/navback.ejs%>
+
+
+
+<div class="container-fluid">
+    <%article_modif.forEach(function(articles){%>
+    <form class="form-horizontal" method="POST" action="/admin/article/<%=articles.id%>">
+        <input type="hidden" name="_method" value="PUT">
+        <!--<input type="hidden" name="id" value=" '<!--%=articles.id%--> ">-->
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>MODIFIER PRODUCT</legend>
+            <!-- Text input-->
+
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="product_name">PRODUCT NAME</label>
+                <div class="col-md-4">
+                    <input id="product_name" name="product_name" placeholder="PRODUCT NAME" class="form-control input-md" value="<%= articles.nom %>" required="" type="text">
+
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="product_categorie">PRODUCT CATEGORIE</label>
+                <div class="col-md-4">
+                    <select id="product_categorie" name="product_categorie" type="text" class="form-control" >
+                        <option><%= articles.category %></option>
+                        <option value="Homme">Homme</option>
+                        <option value="Femme">Femme</option>
+                        <option value="Accessoire">Accessoire</option>
+                    </select>
+
+                </div>
+            </div>
+
+
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="online_date">PRIX</label>
+                <div class="col-md-4">
+                    <input id="online_date" name="prix" placeholder="PRIX" class="form-control input-md"  value="<%= articles.prix %>" required="" type="text">
+
+                </div>
+            </div>
+            <!--file button-->
+            <!-- File Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="image">main_image</label>
+                <div class="col-md-4">
+                    <input id="image" name="image" class="input-file"  value="<%= articles.image %>" type="file">
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="ajouter">Single Button</label>
+                <div class="col-md-4">
+                    <button id="ajouter" name="ajouter" type="submit" class="btn btn-primary">Enregister</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+</div>
+
+<%})%>
+
+</body>
+
+</html>
+
+
+

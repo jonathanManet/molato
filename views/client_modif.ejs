@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<% include partials/headback.ejs %>
+
+<body>
+
+<% include partials/navback.ejs%>
+<div class="container">
+    <%client_modif.forEach(function(clients){%>
+    <form class="form-horizontal" method="POST" action="/admin/client/<%=clients.id%>">
+        <input type="hidden" name="_method" value="PUT">
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <h1> Formulaire Modification<br/> <small> Modifier utilisateur </small></h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-3">
+                <div class="form-group">
+                    <label for="Nom">Nom</label>
+                    <input type="text" class="form-control" name="Nom" placeholder="nom" value="<%=clients.nom%>" required="">
+                </div>
+            </div>
+            <div class="col-md-offset-1 col-md-3">
+                <div class="form-group">
+                    <label for="Prenom">Prénom</label>
+                    <input type="text" class="form-control"name="Prenom" placeholder="Prénom" value="<%=clients.prenom%>" required="">
+                </div>
+            </div>
+
+            <div class="col-md-offset-2 col-md-3">
+                <div class="form-group">
+                    <label for="Date_naissance">Date de naissance</label>
+                    <input type="text" class="form-control"name="Date_naissance" placeholder="JJ/mois/Année"value=<%=moment(clients.date_naissance).format('DD-MMMM-YYYY')%> required="">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-7">
+                <div class="form-group">
+                    <label for="Email">Email address</label>
+                    <input type="text" class="form-control"name="Email" placeholder="Enter email" value="<%=clients.e_mail%>" required="">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-3">
+                <div class="form-group">
+                    <label for="Password">Mot de passe</label>
+                    <input type="password" class="form-control"name="Password" placeholder="Mot de passe" value="<%=clients.mot_de_pass%>" required="">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-3">
+                <div class="input-group">
+                    <span class="input-group-addon glyphicon glyphicon-earphone"></span>
+                    <input type="text" class="form-control" placeholder="Téléphone" name="Portable" aria-describedby="basic-addon1" value="<%=clients.portable%>" required="">
+                </div>
+            </div>
+        </div>
+
+        <br/>
+        <div class="row">
+            <div class="col-md-offset-5 col-md-1">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<%})%>
+
+</body>
+</html>

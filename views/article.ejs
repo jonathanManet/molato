@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<% include partials/headback.ejs %>
+
+<body>
+
+<% include partials/navback.ejs%>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <section>
+
+            <table class="table table-expansed">
+                <thead>
+                    <h2>ARTICLE</h2>
+                    <a href="/admin/article_saver" class="btn btn-success btn-block">Ajouter</a>
+                <tr>
+                    <th>#ID</th>
+                    <th>Produit</th>
+                    <th>Categorie</th>
+                    <th>Prix</th>
+                    <th>Image</th>
+
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <% article.forEach(function (articles)  { %>
+                <tr>
+                    <td><%= articles.id %></td>
+                    <td><%= articles.nom %></td>
+                    <td><%= articles.category%></td>
+                    <td><%=articles.prix%></td>
+                    <td><%=articles.image%></td>
+                    <td>
+                    <!--<form method="POST" action="/admin/article/">-->
+                        <!--<input type="hidden" name="_method" value="DELETE">-->
+                        <!--<button type="submit" class="btn btn-danger">Supprimer</button>-->
+                    <!--</form>-->
+
+                        <form method="POST" action="/admin/article/<%=articles.id%>">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+
+                    <td><a class="btn btn-warning" href="/admin/article_modif/<%=articles.id%>">Modifier</a></td>
+
+                </tr>
+                <% }) %>
+
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+
+
+</body>
+
+<!-- Optional theme -->
+
+
+</html>

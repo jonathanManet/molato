@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<% include partials/headback.ejs %>
+
+<body>
+<% include partials/navback.ejs%>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <section>
+
+            <table class="table table-expansed">
+                <thead>
+                <h2 class="text-center">CLIENT</h2>
+
+                <tr>
+                    <th>#ID</th>
+                    <th>nom</th>
+                    <th>prenom</th>
+                    <th>date de Naissance</th>
+                    <th>adresse mail</th>
+                    <th>Portable</th>
+                    <th>mot de passe</th>
+                </tr>
+                </thead>
+                <tbody>
+                <a href="/admin/client_saver" class="btn btn-success btn-block">Ajouter</a>
+
+                <% if (typeof client== 'object' && client.length >0 )  { %>
+                <%client.forEach(function (clients)  { %>
+
+                <tr>
+
+                    <td><%= clients.id %></td>
+                    <td><%= clients.nom %></td>
+                    <td><%= clients.prenom %></td>
+                    <td><%= moment(clients.date_naissance).format('DD-MMMM-YYYY')%></td>
+                    <td><%= clients.e_mail %></td>
+                    <td><%= clients.portable%></td>
+                    <td><%= clients.mot_de_pass%></td>
+                    <td>
+                        <form method="POST" action="/admin/client/<%= clients.id %>">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger">Supprimer</button>
+                        </form>
+                    </td>
+                    <td><a class="btn btn-warning" href="/admin/client_modif/<%=clients.id%>">Modifier</a></td>
+                </tr>
+                <% }) %>
+                <% }else { %>
+
+                <td class="text-center"> Aucuns Utilisateurs</td>
+
+                <% } %>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</div>
+
+
+</body>
+
+</html>
