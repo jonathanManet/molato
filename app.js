@@ -10,8 +10,13 @@ var app = express();
 var articlesCtrl = require('./controllers/articlesCtrl');
 var defaultCtrl = require('./controllers/defaultCtrl');
 var usersCtrl = require('./controllers/usersCtrl');
-var usersFormCtrl = require('./controllers/usersFormCtrl')
-var articlesFormCtrl= require('./controllers/articlesFormCtrl')
+var usersFormCtrl = require('./controllers/usersFormCtrl');
+var articlesFormCtrl= require('./controllers/articlesFormCtrl');
+var hommeCtrl = require('./controllers/articlesController/hommeCtrl');
+var femmeCtrl = require('./controllers/articlesController/femmeCtrl');
+var accessoireCtrl = require('./controllers/articlesController/accessoireCtrl');
+var loginCtrl = require('./controllers/loginCtrl');
+
 // view engine setup
 app.set('view engine', 'ejs');
 
@@ -32,7 +37,18 @@ app.use(methodOverride(function (req, res) {
 //MES ROUTE
 app.get('/', defaultCtrl.accueilConstructor);
 
-//ROUTE USERS
+//Mes routes Articles à vendre
+app.get('/homme',hommeCtrl.hommeArticle);
+app.get('/femme',femmeCtrl.femmeArticle);
+app.get('/accessoire',accessoireCtrl.accessoireArticle);
+
+
+//login
+app.get('/login',loginCtrl.loginPage);
+
+
+
+//ROUTE ADMINISTRATION
 app.get('/admin',usersCtrl.adminPageConstructor);
 
 app.get('/admin/client',usersCtrl.clientPageConstructor);
@@ -52,6 +68,10 @@ app.delete('/admin/article/:id',articlesCtrl.supArticleCtrl);
 
 app.get('/admin/article_modif/:id',articlesCtrl.modiPageArticle);
 app.put('/admin/article/:id',articlesCtrl.saveModifPageArticles);
+
+
+
+
 
 app.listen(3000, function () {
     console.log("Congrats you are connected!The app is running on http://localhost:3000")

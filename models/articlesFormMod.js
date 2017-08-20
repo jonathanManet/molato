@@ -1,6 +1,6 @@
 var connexion = require('./configuration/mysqlConf');
 
-//Ajouter les articles dans ma base de donnée
+//Ajouter les articlesViews dans ma base de donnée
 
 function postArticleServer(req){
 
